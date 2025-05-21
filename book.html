@@ -1,41 +1,121 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Football Ground</title>
-    <link rel="stylesheet" href="style2.css"> </head>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: rgb(32, 4, 4);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .feedback {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
 <body>
-    <h1>Book a Football Ground</h1>
+    <h1>MUST Ground Booking</h1>
 
     <form id="booking-form" action="process_booking.php" method="POST">
-        <div>
-            <label for="team_name">Team/Course Name:</label>
-            <input type="text" id="team_name" name="team_name" required>
-        </div>
-        <div>
-            <label for="contact_person">captain Name:</label>
-            <input type="text" id="contact_person" name="contact_person" required>
-        </div>
-        <div>
-            <label for="ground_id">Preferred Ground:</label>
-            <select id="ground_id" name="ground_id" required>
-                <option value="1">Ground 1</option>
-                <option value="2">Ground 2</option>
-            </select>
-        </div>
-        <div>
-            <label for="start_time">Start Time (YYYY-MM-DD HH:MM):</label>
-            <input type="datetime-local" id="start_time" name="start_time" required>
-        </div>
-        <div>
-            <label for="end_time">End Time (YYYY-MM-DD HH:MM):</label>
-            <input type="datetime-local" id="end_time" name="end_time" required>
-        </div>
+        <fieldset>
+            <legend>Booking Information</legend>
+
+            <div>
+                <label for="team_name">Team Course Name:</label>
+                <input type="text" id="team_name" name="team_name" placeholder="Team Course Name:" required>
+            </div>
+
+            <div>
+                <label for="contact_person">Captain Name:</label>
+                <input type="text" id="contact_person" name="contact_person" placeholder="Captain Name:" required>
+            </div>
+
+            <div>
+                <label for="ground_id">Preferred Ground:</label>
+                <select id="ground_id" name="ground_id" required>
+                    <option value="">-- Select Ground --</option>
+                    <option value="1">Ground 1</option>
+                    <option value="2">Ground 2</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="start_time">Start Time:</label>
+                <input type="datetime-local" id="start_time" name="start_time" required>
+            </div>
+
+            <div>
+                <label for="end_time">End Time:</label>
+                <input type="datetime-local" id="end_time" name="end_time" required>
+            </div>
+        </fieldset>
+
         <button type="submit">Submit Booking Request</button>
+        <div class="feedback" id="form-feedback"></div>
     </form>
 
-    <p><a href="index2.html">Back to Availability</a></p>
+    <p style="text-align: center;"><a href="index2.html">Back to Availability</a></p>
+
+    <!-- <script>
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            const start = new Date(document.getElementById("start_time").value);
+            const end = new Date(document.getElementById("end_time").value);
+            const now = new Date();
+
+            const feedback = document.getElementById("form-feedback");
+            feedback.textContent = ""; // Clear previous messages
+
+            if (start >= end) {
+                event.preventDefault();
+                feedback.textContent = "End time must be after start time.";
+                return;
+            }
+
+            if (start < now) {
+                event.preventDefault();
+                feedback.textContent = "Start time cannot be in the past.";
+                return;
+            }
+        });
+    </script> -->
 </body>
 </html>
